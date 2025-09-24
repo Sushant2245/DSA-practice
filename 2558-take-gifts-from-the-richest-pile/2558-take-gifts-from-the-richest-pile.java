@@ -8,7 +8,7 @@ class Solution {
             int val=q.poll();
             q.add((int)Math.sqrt(val));
         }
-        int sum=0;
+        long sum=0;
         while(!q.isEmpty()){
             sum+=q.poll();
         }
