@@ -21,10 +21,10 @@ class Solution {
         return max[0];
     }
     public int Path(TreeNode root , int[] max){
-        if(root==null) return 0;
-        int left=Math.max(0,Path(root.left, max));
-        int right= Math.max(0,Path(root.right,max));
-        max[0]= Math.max(max[0],left+right+root.val);
-        return root.val+Math.max(left,right);
+       if(root==null) return 0;
+       int left= Math.max(0,Path(root.left,max));
+       int right= Math.max(0,Path(root.right,max));
+       max[0]= Math.max(max[0],left+right+root.val);
+       return root.val+Math.max(left,right);
     }
 }
