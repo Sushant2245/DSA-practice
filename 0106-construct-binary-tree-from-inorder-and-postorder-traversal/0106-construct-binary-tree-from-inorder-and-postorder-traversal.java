@@ -27,8 +27,9 @@ class Solution {
         TreeNode root= new TreeNode(postorder[postEnd]);
         int inRoot=map.get(root.val);
         int numsLeft=inRoot-inStart;
-        root.right=buildTree(postorder,postStart+numsLeft,postEnd-1,inorder,inRoot+1,inEnd,map);
+       
         root.left=buildTree(postorder,postStart,postStart+numsLeft-1,inorder,inStart,inRoot-1,map);
+         root.right=buildTree(postorder,postStart+numsLeft,postEnd-1,inorder,inRoot+1,inEnd,map);
         return root;
 
     }
