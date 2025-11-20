@@ -9,7 +9,7 @@ class Solution {
         for(int j=0;j<n;j++){
             if(isConnected[i][j]==1 && i!=j){
                 adj.get(i).add(j);
-                adj.get(j).add(i);
+                
             }
         }
        }
