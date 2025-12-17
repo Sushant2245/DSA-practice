@@ -1,42 +1,43 @@
 class Solution {
     public int[][] updateMatrix(int[][] mat) {
-        int m= mat.length;
-        int n=mat[0].length;
+        int n=mat.length;
+        int m=mat[0].length;
+        int dist[][]= new int[n][m];
         Queue<int[]> q= new LinkedList<>();
-        int result[][]=new int[m][n];
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
                 if(mat[i][j]==0){
-                    result[i][j]=0;
+                    dist[i][j]=0;
                     q.offer(new int[]{i,j});
+
                 }
                 else{
-                    result[i][j]=-1;
+                    dist[i][j]=-1;
                 }
             }
         }
         while(!q.isEmpty()){
-            int[] pair= q.poll();
-            int i=pair[0];
-            int j=pair[1];
+            int pair[]=q.poll();
+            int r=pair[0];
+            int c=pair[1];
 
-            if(i+1<m && result[i+1][j]==-1){
-                result[i+1][j]=result[i][j]+1;
-                q.offer(new int[]{i+1,j});
+            if(r+1<n && dist[r+1][c]==-1){
+                dist[r+1][c]=dist[r][c]+1;
+                q.offer(new int[]{r+1,c});
             }
-            if(j+1<n && result[i][j+1]==-1){
-                result[i][j+1]=result[i][j]+1;
-                q.offer(new int[]{i,j+1});
+            if(c+1<m && dist[r][c+1]==-1){
+                dist[r][c+1]=dist[r][c]+1;
+                q.offer(new int[]{r,c+1});
             }
-            if(i-1>=0 && result[i-1][j]==-1){
-                result[i-1][j]=result[i][j]+1;
-                q.offer(new int[]{i-1,j});
+            if(r-1>=0 && dist[r-1][c]==-1){
+                dist[r-1][c]=dist[r][c]+1;
+                q.offer(new int[]{r-1,c});
             }
-            if(j-1>=0 && result[i][j-1]==-1){
-                result[i][j-1]=result[i][j]+1;
-                q.offer(new int[]{i,j-1});
+            if(c-1>=0 && dist[r][c-1]==-1){
+                dist[r][c-1]=dist[r][c]+1;
+                q.offer(new int[]{r,c-1});
             }
         }
-        return result;
+        return dist;
     }
 }
