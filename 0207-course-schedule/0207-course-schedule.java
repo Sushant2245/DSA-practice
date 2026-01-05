@@ -32,6 +32,7 @@ class Solution {
             if(inDegree[it]==0)q.offer(it);
          }
        }
-       return topo.size()==n;
+       if(topo.size()==n)return true;
+       return false;
     }
 }
