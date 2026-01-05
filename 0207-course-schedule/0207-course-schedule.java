@@ -1,35 +1,37 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        int n=prerequisites.length;
         ArrayList<ArrayList<Integer>> adj= new ArrayList<>();
-        for(int i=0;i<numCourses;i++){
+        int n=numCourses;
+        for(int i=0;i<n;i++){
             adj.add(new ArrayList<>());
         }
-        for(int[] e: prerequisites){
-            int u=e[0];
-            int v=e[1];
-            adj.get(u).add(v);
+        for (int i = 0; i < prerequisites.length; i++) {
+           int a = prerequisites[i][0];
+           int b = prerequisites[i][1];
+            adj.get(b).add(a);
         }
-        Queue<Integer> q= new LinkedList<>();
-        int inDegree[]=new int[numCourses];
-        for(int i=0;i<numCourses;i++){
+        //detect cycle using topo sort
+        int inDegree[]= new int[n];
+        for(int i=0;i<n ;i++){
             for(int it:adj.get(i)){
                 inDegree[it]++;
             }
         }
-        for(int i=0;i<numCourses;i++){
-            if(inDegree[i]==0)q.offer(i);
-        }
-        ArrayList<Integer> topo=new ArrayList<>();
-        while(!q.isEmpty()){
-            int current=q.poll();
-            topo.add(current);
-            for(int it:adj.get(current)){
-                inDegree[it]--;
-                if(inDegree[it]==0)q.offer(it);
+        Queue<Integer> q= new LinkedList<>();
+        for(int i=0;i<inDegree.length;i++){
+            if(inDegree[i]==0){
+                q.offer(i);
             }
         }
-        if(topo.size()==numCourses)return true;
-        return false;
+       List<Integer> topo= new ArrayList<>();
+       while(!q.isEmpty()){
+        int node= q.poll();
+        topo.add(node);
+         for(int it: adj.get(node)){
+            inDegree[it]--;
+            if(inDegree[it]==0)q.offer(it);
+         }
+       }
+       return topo.size()==n;
     }
 }
