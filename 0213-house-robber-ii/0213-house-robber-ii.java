@@ -1,17 +1,20 @@
 class Solution {
     public int rob(int[] nums) {
-        
-        int case1=f(nums,0,nums.length-2);
-        int case2=f(nums,1,nums.length-1);
+        int n=nums.length;
+        if(n==1)return nums[0];
+        int case1=fun(nums,0,n-2);
+        int case2=fun(nums,1,n-1);
         return Math.max(case1,case2);
     }
-    public int f(int [] nums,int start,int end){
-        int n=end-start+1;
-        int dp[]= new int[n+1];
-        dp[0]=nums[start];
+    public int fun(int[] nums,int s,int e){
+        int n=e-s+1;
+        int dp[]=new int[n+1];
+        dp[0]=nums[s];
         for(int i=1;i<n;i++){
-            int take=nums[start+i];
-            if(i>1)take+=dp[i-2];
+            int take=nums[s+i];
+            if(i>1){
+                take+=dp[i-2];
+            }
             int notTake=dp[i-1];
             dp[i]=Math.max(take,notTake);
         }
