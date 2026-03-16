@@ -1,29 +1,25 @@
 class Solution {
-    private static final String[] KEYPAD = {
-        "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+    public static final String[] keypad={
+        "","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"
     };
-
     public List<String> letterCombinations(String digits) {
-        List<String> result = new ArrayList<>();
-
-        if (digits == null || digits.length() == 0) return result;
-
-        backtrack(digits, 0, new StringBuilder(), result);
+        List<String> result=new ArrayList<>();
+        if(digits.length()==0) return result;
+        helper(digits,new StringBuilder(),result,0);
         return result;
     }
-
-    private void backtrack(String digits, int index, StringBuilder current,   List<String> result) {
-        if (index == digits.length()) {
-            result.add(current.toString());
+    public static void helper(String digits,StringBuilder ans,List<String> result,int index){
+        if(index==digits.length()){
+            result.add(ans.toString());
             return;
         }
+        String letters=keypad[digits.charAt(index)-'0'];
+        for(char ch:letters.toCharArray()){
+            ans.append(ch);
+            helper(digits,ans,result,index+1);
+            ans.deleteCharAt(ans.length()-1);
 
-        String letters = KEYPAD[digits.charAt(index) - '0'];
-
-        for (char ch : letters.toCharArray()) {
-            current.append(ch);
-            backtrack(digits, index + 1, current, result);
-            current.deleteCharAt(current.length() - 1); // backtrack
         }
+        
     }
 }
