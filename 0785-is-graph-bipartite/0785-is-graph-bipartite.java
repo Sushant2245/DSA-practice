@@ -14,7 +14,7 @@ class Solution {
         color[node]=col;
         for(int i:graph[node]){
             if(color[i]==-1){
-            if(dfs(graph,1-col,color,i))return true;
+            if(!dfs(graph,1-col,color,i))return false;
             }
             else if(color[i]==col)return false;
         }
