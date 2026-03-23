@@ -1,7 +1,7 @@
 class Solution {
     public void solve(char[][] board) {
         int m=board.length;
-        int n=board.length;
+        int n=board[0].length;
         for(int i=0; i<m;i++){
             if(board[i][0]=='O')dfs(board,i,0);
             if(board[i][n-1]=='O') dfs(board,i,n-1);
