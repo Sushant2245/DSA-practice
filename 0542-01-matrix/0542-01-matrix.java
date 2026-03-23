@@ -25,15 +25,15 @@ class Solution {
                 result[r-1][c]=result[r][c]+1;
                 q.offer(new int[]{r-1,c});
             }
-            else if(r+1<m && result[r+1][c]==-1){
+             if(r+1<m && result[r+1][c]==-1){
                 result[r+1][c]=result[r][c]+1;
                 q.offer(new int[]{r+1,c});
             }
-            else if(c+1<n && result[r][c+1]==-1){
+          if(c+1<n && result[r][c+1]==-1){
                 result[r][c+1]=result[r][c]+1;
                 q.offer(new int[]{r,c+1});
             }
-            else if(c-1>=0 && result[r][c-1]==-1){
+          if(c-1>=0 && result[r][c-1]==-1){
                 result[r][c-1]=result[r][c]+1;
                 q.offer(new int[]{r,c-1});
             }
