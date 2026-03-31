@@ -20,6 +20,6 @@ public class Solution {
             if(t1==null) t1=headB;
             if(t2==null)t2=headA;
         }
-        return null;
+        return t1;
     }
 }
