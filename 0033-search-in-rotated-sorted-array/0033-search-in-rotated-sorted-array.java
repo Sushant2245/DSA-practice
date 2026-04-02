@@ -5,8 +5,8 @@ class Solution {
         while(s<=e){
             int mid=s+(e-s)/2;
             if(nums[mid]==target)return mid;
-            if(nums[s]<nums[mid]){
-                if(nums[s]<=target && nums[mid]>=target){
+            if(nums[s]<=nums[mid]){
+                if(nums[s]<=target && nums[mid]>target){
                     e=mid-1;
                 }
                 else{
@@ -14,7 +14,7 @@ class Solution {
                 }
             }
             else{
-                if(nums[mid]<=target && nums[e]>=target){
+                if(nums[mid]<target && nums[e]>=target){
                     s=mid+1;
                 }
                 else{
